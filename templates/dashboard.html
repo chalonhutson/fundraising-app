@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}
+Dashboard
+{% endblock %}
+{% block main %}
+    <div class="dashboard-main">
+        <div class="donor-list-container">
+            <div class="donor-list-header">
+                <h1>Donor List</h1>
+                <a href="/donor/create" class="btn btn-primary">Add Donor</a>
+            </div>
+            <div class="donor-list">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Donor Name</th>
+                            <th scope="col">Donor Status</th>
+                            <th scope="col">Prospect Amount</th>
+                            <th scope="col">Donor Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for donor in donors %}
+                        <tr>
+                            <td>{{ donor.name }}</td>
+                            <td>{{ donor.status }}</td>
+                            <td>{{ donor.prospect_amount }}</td>
+                            <td>
+                                <a href="/donor/{{ donor.id }}" class="btn btn-primary">View</a>
+                                <a href="/donor/{{ donor.id }}/edit" class="btn btn-secondary">Edit</a>
+                                <a href="/donor/{{ donor.id }}/delete" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
